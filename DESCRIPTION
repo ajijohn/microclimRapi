@@ -1,0 +1,15 @@
+Package: microclimRapi
+Title: Microclim.org R API Toolkit
+Version: 0.0.0.9000
+Authors@R: person("Aji", "John", email = "ajijohn@ndd", role = c("aut", "cre"))
+Description: API toolkit library to interact with Microclim(http://microclim.org).
+Depends: R (>= 3.3.2)
+Imports:
+       httr
+License: MIT
+URL: https://github.com/trenchproject/microclimRapi
+BugReports: https://github.com/trenchproject/microclimRapi/issues
+Encoding: UTF-8
+LazyData: true
+Suggests: testthat
+RoxygenNote: 6.0.0.9000
