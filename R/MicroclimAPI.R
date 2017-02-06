@@ -37,6 +37,16 @@ MicroclimAPI <- setRefClass("MicroclimAPI",
                            apis_ep = paste(url_mc,'microclim/requests',sep = "")
                            rqsts_json = GET(apis_ep, add_headers(Authorization = auth_hdr))
                            return(rqsts_json)
+                         },
+                         status = function(requestId) {
+                           # use the token to fetch status of a request.
+                           # Id is passed.
+                           auth_hdr = paste('Bearer ',token,sep = "")
+                           # set the REST endpoint
+                           apis_ep = paste(url_mc,'microclim/status',sep = "")
+                           rqst_json = GET(apis_ep,add_headers(Authorization = auth_hdr),query = list("requestId" = requestId))
+                           return(rqst_json)
                          }
+
                        )
 )
