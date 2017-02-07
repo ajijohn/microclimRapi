@@ -9,7 +9,7 @@ library(httr)
 #' @export
 #' @examples
 #' mtoken = getToken('07d4d584c04941a25e291feb8881c685','9ef6bbb24a855fbb765f3890e05592f4','localhost:3000/')
-#' ma <- MicroclimAPI$new(token = mtoken,url_mc='localhost:3000/')
+#' ma <- MicroclimAPI$new(token = mtoken,url_mc='http://localhost:3000/')
 #' apis= ma$apis()
 #' jsonlite::prettify(apis)
 #'
@@ -44,8 +44,8 @@ MicroclimAPI <- setRefClass("MicroclimAPI",
                            auth_hdr = paste('Bearer ',token,sep = "")
                            # set the REST endpoint
                            apis_ep = paste(url_mc,'microclim/status',sep = "")
-                           rqst_json = GET(apis_ep,add_headers(Authorization = auth_hdr),query = list("requestId" = requestId))
-                           return(rqst_json)
+                           rqst_json = GET(apis_ep,query = list(requestId = requestId),add_headers(Authorization = auth_hdr))
+                           return(content(rqst_json))
                          }
 
                        )
