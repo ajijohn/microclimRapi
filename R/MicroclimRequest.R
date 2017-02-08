@@ -54,6 +54,24 @@ MicroclimRequest <- setRefClass("MicroclimRequest",
                                                           file=mr$file))
                                 return(mcRqst)
 
-                              }
+                              },
+                            mreq_list=function(){
+
+                              mrqlist= list(latS=mr$latS,
+                                                  latN=mr$latN,
+                                                  lonW=mr$lonW,
+                                                  lonE=mr$lonE,
+                                                  variable=mr$variable,
+                                                  shadelevel=mr$shadelevel,
+                                                  hod=mr$hod,
+                                                  interval=mr$interval,
+                                                  aggregation=mr$aggregation,
+                                                  stdate=mr$stdate,
+                                                  eddate=mr$eddate,
+                                                  file=mr$file)
+                              return(mrqlist)
+
+                            }
+
                             )
 )
