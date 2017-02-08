@@ -14,7 +14,7 @@ Each service is implemented
 
 \examples{
 mtoken = getToken('07d4d584c04941a25e291feb8881c685','9ef6bbb24a855fbb765f3890e05592f4','localhost:3000/')
-ma <- MicroclimAPI$new(token = mtoken,url_mc='localhost:3000/')
+ma <- MicroclimAPI$new(token = mtoken,url_mc='http://localhost:3000/')
 apis= ma$apis()
 jsonlite::prettify(apis)
 
