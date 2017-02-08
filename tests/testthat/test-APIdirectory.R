@@ -5,7 +5,7 @@ library(jsonlite)
 #' and list the avaliable APIs, and other APIs in sucession
 #'
 context("get API dump")
-  test_that('list of avaliable APIs are returned',{
+  test_that('list of avaliable APIs & status of a request is returned',{
 
     api_token = getToken('07d4d584c04941a25e291feb8881c685','9ef6bbb24a855fbb765f3890e05592f4','localhost:3000/')
     expect_that(nchar(api_token),
