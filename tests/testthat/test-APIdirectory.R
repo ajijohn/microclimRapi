@@ -12,6 +12,7 @@ context("get API dump")
                 equals(167))
     ma <- MicroclimAPI$new(token = api_token,url_mc='http://localhost:3000/')
     expect_that(typeof(ma), equals("S4"))
+
     apis= ma$apis()
     expect_true(validate(toJSON(apis)))
     # get status of a request - 589292b9fccaf97e5a3cf472
