@@ -39,8 +39,19 @@ MicroclimRequest <- setRefClass("MicroclimRequest",
                             ),
                             methods = list(
                               json = function() {
-                                # converts the instance firelds to JSON
-                                mcRqst= toJSON(fields, pretty=TRUE)
+                                # converts the instance fields to JSON
+                                mcRqst= toJSON(data.frame(latS=mr$latS,
+                                                          latN=mr$latN,
+                                                          lonW=mr$lonW,
+                                                          lonE=mr$lonE,
+                                                          variable=mr$variable,
+                                                          shadelevel=mr$shadelevel,
+                                                          hod=mr$hod,
+                                                          interval=mr$interval,
+                                                          aggregation=mr$aggregation,
+                                                          stdate=mr$stdate,
+                                                          eddate=mr$eddate,
+                                                          file=mr$file))
                                 return(mcRqst)
 
                               }
