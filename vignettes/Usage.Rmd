@@ -38,13 +38,13 @@ Microclim.org gives a token to a registered user to use its services via APIs. I
 This API pkg uses extensively Reference Class(RC) feature of R, a setp-up from S4 classes. Behaviour is like other OO languages.
 
 ```{r,echo=FALSE}
-ma <- microclimRapi::MicroclimAPI$new(token = api_token,url_mc='http://localhost:3000/')
+ma <- microclimRapi:::MicroclimAPI$new(token = api_token,url_mc='http://localhost:3000/')
 ```
 
 ## Prepare Request and Place a request for extraction
 
 ```{r,echo=FALSE}
-  mr <- MicroclimRequest$new(
+  mr <- microclimRapi:::MicroclimRequest$new(
                   latS = 39.40012200014591,
                   latN=39.92132255884663,
                   lonW=-106.47674560546875,
