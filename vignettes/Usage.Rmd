@@ -1,0 +1,90 @@
+---
+title: "Usage of Microclim R Api"
+author: "Aji John"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Usage of Microclim R Api}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This API toolkit gives you an easy wasy to interact with microclim.org which is
+ microclimatic data repository. One of the important purpose is to do ecological forecasting.
+
+- Never uses retina figures
+- Has a smaller default figure size
+- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+
+## Load the required
+
+First things first, install and load the microclim R library
+
+```{r,echo=FALSE}
+devtools::install_github("trenchproject/microclimRapi")
+library(microclimRapi)
+```
+
+## Get Token
+
+Microclim.org gives a token to a registered user to use its services via APIs. In the account page, you can find your API key and secret.
+
+```{r,echo=FALSE}
+  api_token = getToken('07d4d584c04941a25e291feb8881c685','9ef6bbb24a855fbb765f3890e05592f4','localhost:3000/')
+```
+
+## Get Token
+
+This API pkg uses extensively Reference Class(RC) feature of R, a setp-up from S4 classes. Behaviour is like other OO languages.
+
+```{r,echo=FALSE}
+ma <- microclimRapi::MicroclimAPI$new(token = api_token,url_mc='http://localhost:3000/')
+```
+
+## Prepare Request and Place a request for extraction
+
+```{r,echo=FALSE}
+  mr <- MicroclimRequest$new(
+                  latS = 39.40012200014591,
+                  latN=39.92132255884663,
+                  lonW=-106.47674560546875,
+                  lonE=-105.92193603515625,
+                  variable="ALBEDO",
+                  shadelevel=0,
+                  hod=0,
+                  interval=0,
+                  aggregation=0,
+                  stdate="19810101",
+                  eddate="19810128",
+                  file="csv")
+
+  # place a request
+  ext_req= ma$request(mr)
+  expect_true(validate(toJSON(ext_req)))
+```
+
+
+
+## Check on your request
+
+If Request status is 'PROCESSED', you can proceed with downloading the data.
+
+```{r,echo=FALSE}
+#check the status of your request
+
+```
+
+## Get CSV/netCDF
+```{r,echo=FALSE}
+#Pull your netCDF
+
+```
+
+##Research question - BioPhy Model for a Lizard projecting into future.
+
+
+```{r,echo=FALSE}
+#Describe the model
+
+```
+
