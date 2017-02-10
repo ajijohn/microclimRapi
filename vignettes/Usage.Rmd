@@ -20,16 +20,18 @@ This API toolkit gives you an easy wasy to interact with microclim.org which is
 
 First things first, install and load the microclim R library
 
-```{r,echo=FALSE}
+```{r}
 devtools::install_github("trenchproject/microclimRapi")
 library(microclimRapi)
+library(httr)
+library(jsonlite)
 ```
 
 ## Get Token
 
 Microclim.org gives a token to a registered user to use its services via APIs. In the account page, you can find your API key and secret.
 
-```{r,echo=FALSE}
+```{r}
   api_token = getToken('07d4d584c04941a25e291feb8881c685','9ef6bbb24a855fbb765f3890e05592f4','localhost:3000/')
 ```
 
@@ -37,13 +39,13 @@ Microclim.org gives a token to a registered user to use its services via APIs. I
 
 This API pkg uses extensively Reference Class(RC) feature of R, a setp-up from S4 classes. Behaviour is like other OO languages.
 
-```{r,echo=FALSE}
+```{r}
 ma <- microclimRapi:::MicroclimAPI$new(token = api_token,url_mc='http://localhost:3000/')
 ```
 
 ## Prepare Request and Place a request for extraction
 
-```{r,echo=FALSE}
+```{r}
   mr <- microclimRapi:::MicroclimRequest$new(
                   latS = 39.40012200014591,
                   latN=39.92132255884663,
@@ -60,14 +62,14 @@ ma <- microclimRapi:::MicroclimAPI$new(token = api_token,url_mc='http://localhos
 
   # place a request
   ext_req= ma$request(mr)
-  expect_true(validate(toJSON(ext_req)))
+  print(toJSON(ext_req))
 ```
 
 
 
 ## Check on your request
 
-If Request status is 'PROCESSED', you can proceed with downloading the data.
+If Request status is 'EMAILED', you can proceed with downloading the data.
 
 ```{r,echo=FALSE}
 #check the status of your request
