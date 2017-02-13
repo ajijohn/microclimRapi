@@ -1,4 +1,5 @@
 library(httr)
+library(readr)
 #' Reference Class for Microclim.org Interaction
 #'
 #' @description API with all the REST services
@@ -75,6 +76,17 @@ MicroclimAPI <- setRefClass("MicroclimAPI",
                            apis_ep = paste(url_mc,'microclim/fetch',sep = "")
                            rqst_json = GET(apis_ep,query = list(requestId = requestId),add_headers(Authorization = auth_hdr))
                            return(content(rqst_json))
+                         },
+                         download = function(requestId,fileName) {
+                           # use the token to fetch status of a request.
+                           # Id is passed.
+                           auth_hdr = paste('Bearer ',token,sep = "")
+                           # set the REST endpoint
+                           apis_ep = paste(url_mc,'microclim/download',sep = "")
+                           rqst_file = GET(apis_ep,query = list(requestId = requestId,fileKey=fileName),add_headers(Authorization = auth_hdr))
+                           #print(http_type(rqst_file))
+                           #browser()
+                           return(rqst_file$content)
                          }
 
                        )

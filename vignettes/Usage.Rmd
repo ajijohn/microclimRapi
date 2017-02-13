@@ -87,6 +87,10 @@ If Request status is 'EMAILED', you can proceed with downloading the data.
 
 ```{r,echo=FALSE}
 #Describe the model
+#Get Air Temperature for a given date range (Tair)
+#Get Long wave radiation , Albedo ?
+#
+
 
 ```
 
