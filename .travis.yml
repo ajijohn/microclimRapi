@@ -14,6 +14,7 @@ slack: huckley:RH9dq9u04SKLALXK6EQa0mkp
 
 env:
   global:
-  - R_CHECK_ARGS="--no-build-vignettes --no-manual --timings --as-cran --run-donttest"
-  - _R_CHECK_TIMINGS_="0"
+  - CRAN: http://cran.rstudio.com
+  - R_BUILD_ARGS="--no-build-vignettes --no-manual"
+  - R_CHECK_ARGS="--no-build-vignettes --no-manual --as-cran"
   - R_CHECK_TESTS="FALSE"
