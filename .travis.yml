@@ -8,9 +8,9 @@ after_success:
 
 notifications:
   email:
-  on_success: never
-  on_failure: never
-slack: huckley:RH9dq9u04SKLALXK6EQa0mkp
+    on_success: never
+    on_failure: never
+  slack: huckley:RH9dq9u04SKLALXK6EQa0mkp
 
 env:
   global:

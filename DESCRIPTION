@@ -9,6 +9,7 @@ Imports:
        readr,
        ncdf4
 License: MIT
+Date:2017-01-01
 URL: https://github.com/trenchproject/microclimRapi
 BugReports: https://github.com/trenchproject/microclimRapi/issues
 Encoding: UTF-8
