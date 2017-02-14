@@ -20,7 +20,7 @@ This API toolkit gives you an easy wasy to interact with microclim.org which is
 
 First things first, install and load the microclim R library
 
-```{r}
+```{r,eval=FALSE}
 devtools::install_github("trenchproject/microclimRapi")
 library(microclimRapi)
 library(httr)
@@ -31,7 +31,7 @@ library(jsonlite)
 
 Microclim.org gives a token to a registered user to use its services via APIs. In the account page, you can find your API key and secret.
 
-```{r}
+```{r,eval=FALSE}
   api_token = getToken('07d4d584c04941a25e291feb8881c685','9ef6bbb24a855fbb765f3890e05592f4','localhost:3000/')
 ```
 
@@ -39,13 +39,13 @@ Microclim.org gives a token to a registered user to use its services via APIs. I
 
 This API pkg uses extensively Reference Class(RC) feature of R, a setp-up from S4 classes. Behaviour is like other OO languages.
 
-```{r}
+```{r,eval=FALSE}
 ma <- microclimRapi:::MicroclimAPI$new(token = api_token,url_mc='http://localhost:3000/')
 ```
 
 ## Prepare Request and Place a request for extraction
 
-```{r}
+```{r,eval=FALSE}
   mr <- microclimRapi:::MicroclimRequest$new(
                   latS = 39.40012200014591,
                   latN=39.92132255884663,
@@ -71,13 +71,13 @@ ma <- microclimRapi:::MicroclimAPI$new(token = api_token,url_mc='http://localhos
 
 If Request status is 'EMAILED', you can proceed with downloading the data.
 
-```{r,echo=FALSE}
+```{r,eval=FALSE}
 #check the status of your request
 
 ```
 
 ## Get CSV/netCDF
-```{r,echo=FALSE}
+```{r,eval=FALSE}
 #Pull your netCDF
 
 ```
@@ -85,7 +85,7 @@ If Request status is 'EMAILED', you can proceed with downloading the data.
 ##Research question - BioPhy Model for a Lizard projecting into future.
 
 
-```{r,echo=FALSE}
+```{r,eval=FALSE}
 #Describe the model
 #Get Air Temperature for a given date range (Tair)
 #Get Long wave radiation , Albedo ?

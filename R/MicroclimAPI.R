@@ -78,7 +78,7 @@ MicroclimAPI <- setRefClass("MicroclimAPI",
                            return(content(rqst_json))
                          },
                          download = function(requestId,fileName) {
-                           # use the token to fetch status of a request.
+                           # use the token to fetch the generated file of a request.
                            # Id is passed.
                            auth_hdr = paste('Bearer ',token,sep = "")
                            # set the REST endpoint
