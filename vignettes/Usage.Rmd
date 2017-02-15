@@ -10,18 +10,21 @@ vignette: >
 ---
 
 This API toolkit gives you an easy wasy to interact with microclim.org which is
- microclimatic data repository. One of the important purpose is to do ecological forecasting.
+ microclimatic data repository. One of the important purpose is to do ecological forecasting. This tutorial helps implements a typical usecase to;
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+- Load the microclimR api
+- Download the microclim data
+- Run a basic analysis
 
 ## Load the required
 
 First things first, install and load the microclim R library
 
 ```{r,eval=FALSE}
+
+library(devtools)
 devtools::install_github("trenchproject/microclimRapi")
+
 library(microclimRapi)
 library(httr)
 library(jsonlite)
