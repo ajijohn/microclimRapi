@@ -76,12 +76,26 @@ If Request status is 'EMAILED', you can proceed with downloading the data.
 
 ```{r,eval=FALSE}
 #check the status of your request
+ma$status(requestId)
+#status 'EMAILED' means job is complete.
 
 ```
 
 ## Get CSV/netCDF
 ```{r,eval=FALSE}
 #Pull your netCDF
+if(ma$status(requestId) == "EMAILED")
+{
+  
+  # place a request to fetch the files
+  ftch_req= ma$fetch(requestId)
+
+  # pass the filename
+  ncD <-  ma$download(requestId,ftch_req$files[[1]]$Key)
+
+  #File name has request id as part of it
+  writeBin(ncD, strsplit(ftch_req$files[[1]]$Key, "/")[[1]][2])
+}
 
 ```
 
