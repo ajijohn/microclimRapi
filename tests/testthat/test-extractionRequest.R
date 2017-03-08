@@ -14,7 +14,7 @@ test_that('request was placed',{
   expect_that(typeof(ma), equals("S4"))
 
   #prepare the request
-  mr <- MicroclimRequest$new(
+  mr <<- MicroclimRequest$new(
                   latS = 39.40012200014591,
                   latN=39.92132255884663,
                   lonW=-106.47674560546875,
