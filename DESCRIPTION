@@ -6,8 +6,7 @@ Description: API toolkit library to interact with Microclim(http://microclim.org
 Depends: R (>= 3.3.2)
 Imports:
        httr,
-       readr,
-       ncdf4
+       readr
 License: MIT
 Date: 2017-01-01
 URL: https://github.com/trenchproject/microclimRapi
