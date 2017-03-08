@@ -23,7 +23,10 @@ API wrapper to interact with microclim.org.
 Token is 167 characters in length, it has the user id encoded as part of it
 }
 \examples{
+\dontrun{
 mtoken = getToken('07d4d584c04941a25e291feb8881c685','9ef6bbb24a855fbb765f3890e05592f4','localhost:3000/')
+}
+
 }
 \author{
 Aji John

@@ -8,6 +8,7 @@ library(jsonlite)
 #' @export
 #' @examples
 #'
+#'\dontrun{
 #' mr <- MicroclimRequest$new(
 #'                            latS = 39.40012200014591,
 #'                            latN=39.92132255884663,
@@ -21,6 +22,7 @@ library(jsonlite)
 #'                            stdate="19810101",
 #'                            eddate="19810128",
 #'                            file="csv")
+#' }
 #'
 MicroclimRequest <- setRefClass("MicroclimRequest",
                             fields = list(
