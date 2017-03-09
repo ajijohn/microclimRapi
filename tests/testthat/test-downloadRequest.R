@@ -1,6 +1,6 @@
 library(testthat)
 library(jsonlite)
-library(ncdf4)
+
 
 
 #' We will chain the tests here; get the token
@@ -10,7 +10,9 @@ context("Download request artifacts")
 test_that('artifact was downloaded',{
 
   # key, secret and rest endpoint url
+  # Endpoint - URL - 'microclim.org/' when used with the service
   api_token = getToken('07d4d584c04941a25e291feb8881c685','9ef6bbb24a855fbb765f3890e05592f4','localhost:3000/')
+
   expect_that(nchar(api_token),
               equals(167))
   ma <- microclimRapi:::MicroclimAPI$new(token = api_token,url_mc='http://localhost:3000/')
