@@ -7,6 +7,7 @@
 #' @importFrom httr GET
 #' @importFrom httr POST
 #' @importFrom httr content
+#' @importFrom httr add_headers
 #' @export
 #' @examples
 #' \dontrun{
@@ -27,7 +28,7 @@ MicroclimAPI <- setRefClass("MicroclimAPI",
                            auth_hdr = paste('Bearer ',token,sep = "")
                            # set the REST endpoint
                            apis_ep = paste(url_mc,'microclim/apis',sep = "")
-                           apis_json = httr::GET(apis_ep, add_headers(Authorization = auth_hdr))
+                           apis_json = httr::GET(apis_ep, httr::add_headers(Authorization = auth_hdr))
                            return(httr::content(apis_json)$services)
 
                          },
@@ -38,7 +39,7 @@ MicroclimAPI <- setRefClass("MicroclimAPI",
                            auth_hdr = paste('Bearer ',token,sep = "")
                            # set the REST endpoint
                            apis_ep = paste(url_mc,'microclim/requests',sep = "")
-                           rqsts_json = httr::GET(apis_ep, add_headers(Authorization = auth_hdr))
+                           rqsts_json = httr::GET(apis_ep, httr::add_headers(Authorization = auth_hdr))
                            return(rqsts_json)
                          },
                          status = function(requestId) {
@@ -47,7 +48,7 @@ MicroclimAPI <- setRefClass("MicroclimAPI",
                            auth_hdr = paste('Bearer ',token,sep = "")
                            # set the REST endpoint
                            apis_ep = paste(url_mc,'microclim/status',sep = "")
-                           rqst_json = httr::GET(apis_ep,query = list(requestId = requestId),add_headers(Authorization = auth_hdr))
+                           rqst_json = httr::GET(apis_ep,query = list(requestId = requestId),httr::add_headers(Authorization = auth_hdr))
                            return(httr::content(rqst_json))
                          },
                          request = function(mr) {
@@ -57,7 +58,7 @@ MicroclimAPI <- setRefClass("MicroclimAPI",
                            # set the REST endpoint
                            apis_ep = paste(url_mc,'microclim/request',sep = "")
 
-                           rqst_json = httr::POST(apis_ep, body = mr$mreq_list(), add_headers(Authorization = auth_hdr), encode = "json")
+                           rqst_json = httr::POST(apis_ep, body = mr$mreq_list(), httr::add_headers(Authorization = auth_hdr), encode = "json")
 
                            return(httr::content(rqst_json))
                          },
@@ -67,7 +68,7 @@ MicroclimAPI <- setRefClass("MicroclimAPI",
                            auth_hdr = paste('Bearer ',token,sep = "")
                            # set the REST endpoint
                            apis_ep = paste(url_mc,'microclim/poke',sep = "")
-                           poke = httr::GET(apis_ep,add_headers(Authorization = auth_hdr))
+                           poke = httr::GET(apis_ep,httr::add_headers(Authorization = auth_hdr))
                            return(httr::content(poke_json))
                          },
                          fetch = function(requestId) {
@@ -76,7 +77,7 @@ MicroclimAPI <- setRefClass("MicroclimAPI",
                            auth_hdr = paste('Bearer ',token,sep = "")
                            # set the REST endpoint
                            apis_ep = paste(url_mc,'microclim/fetch',sep = "")
-                           rqst_json = httr::GET(apis_ep,query = list(requestId = requestId),add_headers(Authorization = auth_hdr))
+                           rqst_json = httr::GET(apis_ep,query = list(requestId = requestId),httr::add_headers(Authorization = auth_hdr))
                            return(httr::content(rqst_json))
                          },
                          download = function(requestId,fileName) {
@@ -85,7 +86,7 @@ MicroclimAPI <- setRefClass("MicroclimAPI",
                            auth_hdr = paste('Bearer ',token,sep = "")
                            # set the REST endpoint
                            apis_ep = paste(url_mc,'microclim/download',sep = "")
-                           rqst_file = httr::GET(apis_ep,query = list(requestId = requestId,fileKey=fileName),add_headers(Authorization = auth_hdr))
+                           rqst_file = httr::GET(apis_ep,query = list(requestId = requestId,fileKey=fileName),httr::add_headers(Authorization = auth_hdr))
                            #print(http_type(rqst_file))
                            #browser()
                            return(rqst_file$content)

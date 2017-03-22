@@ -8,7 +8,8 @@
 #' @param url_endpoint Microclim Authentication endpoint
 #' @return API token (valid for 2 hours)
 #' @keywords API Microclim
-#'
+#' @importFrom httr POST
+#' @importFrom httr content
 #' @export
 #' @examples
 #' \dontrun{
