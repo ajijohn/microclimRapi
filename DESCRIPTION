@@ -4,16 +4,14 @@ Version: 0.0.0.9000
 Authors@R: person("Aji", "John", email = "ajijohn@ndd", role = c("aut", "cre"))
 Description: API toolkit library to interact with Microclim(http://microclim.org).
 Depends: R (>= 3.3.2)
-Imports:
-       httr,
-       readr
+Imports:httr,readr,
+    jsonlite
 License: MIT
 Date: 2017-01-01
 URL: https://github.com/trenchproject/microclimRapi
 BugReports: https://github.com/trenchproject/microclimRapi/issues
 Encoding: UTF-8
 LazyData: true
-Imports:httr,readr
 Suggests: testthat,
     knitr,
     rmarkdown,
