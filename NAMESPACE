@@ -3,3 +3,7 @@
 export(getToken)
 exportClasses(MicroclimAPI)
 exportClasses(MicroclimRequest)
+importFrom(httr,GET)
+importFrom(httr,POST)
+importFrom(httr,content)
+importFrom(jsonlite,toJSON)

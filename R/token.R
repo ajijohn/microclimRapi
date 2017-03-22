@@ -1,4 +1,3 @@
-library(httr)
 #' Get the API token
 #'
 #' @description API wrapper to interact with microclim.org.
@@ -22,8 +21,8 @@ getToken <- function(apikey,apisec,url_endpoint){
   body <- list(apikey = apikey, apisecret = apisec)
 
   # JSON encoded for keys
-  r <- POST( url_site, body = body, encode = "json")
+  r <- httr::POST( url_site, body = body, encode = "json")
 
-  return(content(r)$token)
+  return(httr::content(r)$token)
 
 }

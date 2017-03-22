@@ -1,10 +1,10 @@
-library(jsonlite)
 #' Reference Class for MicroclimRequest for Microclim.org Interaction
 #'
 #' @description Reference class encapsulating Microclim Request
 #' @details MicroclimRequest
 #' @author Aji John
 #' @keywords API Microclim
+#' @importFrom jsonlite toJSON
 #' @export
 #' @examples
 #'
@@ -42,7 +42,7 @@ MicroclimRequest <- setRefClass("MicroclimRequest",
                             methods = list(
                               json = function() {
                                 # converts the instance fields to JSON
-                                mcRqst= toJSON(data.frame(latS=mr$latS,
+                                mcRqst= jsonlite::toJSON(data.frame(latS=mr$latS,
                                                           latN=mr$latN,
                                                           lonW=mr$lonW,
                                                           lonE=mr$lonE,
