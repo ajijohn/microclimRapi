@@ -26,10 +26,10 @@
 #'
 MicroclimRequest <- setRefClass("MicroclimRequest",
                             fields = list(
-                              latS = "numeric",
-                              latN="numeric",
-                              lonW="numeric",
-                              lonE="numeric",
+                              latS = "character",
+                              latN="character",
+                              lonW="character",
+                              lonE="character",
                               variable="character",
                               shadelevel="numeric",
                               hod="numeric",
