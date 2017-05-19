@@ -9,8 +9,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-This API toolkit gives you an easy wasy to interact with microclim.org which is
- microclimatic data repository. One of the important purpose is to do ecological forecasting. This tutorial helps implements a typical usecase to;
+This API toolkit gives you an easy wasy to interact with microclim.org which is a microclimatic data repository. 
+One of the important purpose is to do ecological forecasting. This vignette helps implements a typical usecase to;
 
 - Load the microclimR api
 - Download the microclim data
@@ -103,9 +103,12 @@ if(ma$status(requestId) == "EMAILED")
 
 
 ```{r,eval=FALSE}
-#Describe the model
-#Get Air Temperature for a given date range (Tair)
-#Get Long wave radiation , Albedo ?
+# Describe the model
+# For the given date range
+# Tair
+# Tsurface
+# UV
+# SWDOWN
 #
 
 
