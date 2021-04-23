@@ -1,0 +1,125 @@
+---
+title: "Usage of Microclim R Api"
+author: "Aji John"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Usage of Microclim R Api}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This API toolkit gives you an easy wasy to interact with microclim.org which is a microclimatic data repository. 
+One of the important purpose is to do ecological forecasting. This vignette helps implements a typical usecase to;
+
+- Load the microclimR api
+- Download the microclim data
+- Run a basic analysis
+
+## Load the required
+
+First things first, install and load the microclim R library
+
+```{r,eval=FALSE}
+
+library(devtools)
+devtools::install_github("trenchproject/microclimRapi")
+
+library(microclimRapi)
+library(httr)
+library(jsonlite)
+```
+
+## Get Token
+
+Microclim.org gives a token to a registered user to use its services via APIs. In the account page, you can find your API key and secret.
+
+```{r,eval=FALSE}
+  api_token = getToken('07d4d584c04941a25e291feb8881c685','9ef6bbb24a855fbb765f3890e05592f4','localhost:3000/')
+```
+
+## Get Token
+
+This API pkg uses extensively Reference Class(RC) feature of R, a setp-up from S4 classes. Behaviour is like other OO languages.
+
+```{r,eval=FALSE}
+ma <- microclimRapi:::MicroclimAPI$new(token = api_token,url_mc='http://localhost:3000/')
+```
+
+## Prepare Request and Place a request for extraction
+
+```{r,eval=FALSE}
+  mr <- microclimRapi:::MicroclimRequest$new(
+                  latS = 39.40012200014591,
+                  latN=39.92132255884663,
+                  lonW=-106.47674560546875,
+                  lonE=-105.92193603515625,
+                  variable="ALBEDO",
+                  shadelevel=0,
+                  hod=0,
+                  interval=0,
+                  aggregation=0,
+                  stdate="19810101",
+                  eddate="19810128",
+                  file="csv")
+
+  # place a request
+  ext_req= ma$request(mr)
+  print(toJSON(ext_req))
+```
+
+
+
+## Check on your request
+
+If Request status is 'EMAILED', you can proceed with downloading the data.
+
+```{r,eval=FALSE}
+#check the status of your request
+ma$status(requestId)
+#status 'EMAILED' means job is complete.
+
+```
+
+## Get CSV/netCDF
+```{r,eval=FALSE}
+#Pull your netCDF
+if(ma$status(requestId) == "EMAILED")
+{
+  
+  # place a request to fetch the files
+  ftch_req= ma$fetch(requestId)
+
+  # pass the filename
+  ncD <-  ma$download(requestId,ftch_req$files[[1]]$Key)
+
+  #File name has request id as part of it
+  writeBin(ncD, strsplit(ftch_req$files[[1]]$Key, "/")[[1]][2])
+}
+
+```
+
+##Research question - Use the temperature profile in an area
+
+
+```{r,eval=FALSE}
+library(tidyverse)
+library(weathermetrics)
+library(lubridate)
+data_file <- read_csv('../data/adaptor.mars.internal-1619204317.5411718-32008-12-e5128d75-59a5-44c3-b28b-c9a274b6216c.csv')
+
+head(data_file)
+data_file$timeutc <- as.POSIXct(data_file$time, tz="Europe/London")
+data_file$timepst <- lubridate::with_tz(data_file$time, "America/Los_Angeles")
+data_file$timepacific <- lubridate::with_tz(data_file$timeutc, "America/Los_Angeles")
+
+data_file %>% mutate(celsius2 = kelvin.to.celsius(t2m)) %>%
+  filter(lubridate::date(timepacific) == '2020-08-01')  %>% 
+ mutate( lon =  round(longitude, 3), lat = round(latitude, 3) ) %>% 
+  filter (lat == 47.018 & lon == -121.714) %>%
+  ggplot() +
+   geom_point(aes(time, celsius2))
+
+
+```
+
